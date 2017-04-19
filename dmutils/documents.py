@@ -7,7 +7,7 @@ try:
 except ImportError:
     import urllib.parse as urlparse
 
-from .s3 import S3ResponseError, get_file_size_up_to_maximum, FILE_SIZE_LIMIT
+from .s3 import S3ResponseError, get_file_size, FILE_SIZE_LIMIT
 
 
 BAD_SUPPLIER_NAME_CHARACTERS = ['#', '%', '&', '{', '}', '\\', '<', '>', '*', '?', '/', '$',
@@ -142,8 +142,8 @@ def file_is_empty(file_contents):
     return empty
 
 
-def file_is_less_than_5mb(file_contents):
-    return get_file_size_up_to_maximum(file_contents) < FILE_SIZE_LIMIT
+def file_is_less_than_5mb(file_):
+    return get_file_size(file_) < FILE_SIZE_LIMIT
 
 
 def file_is_open_document_format(file_object):
